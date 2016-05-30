@@ -16,7 +16,7 @@
 ## 2、编译方法
 
 - [字体包下载-百度盘](http://pan.baidu.com/s/1hrXDO5A)
-- [字体包下载-Google Drive](https://drive.google.com/file/d/0ByPSg5LzlAjAcm1oeWx1OGRWeEU/view
+- [字体包下载-Google Drive](https://drive.google.com/file/d/0ByPSg5LzlAjAcm1oeWx1OGRWeEU/view)
 
 __OS X__ （[MacTeX 2015](https://tug.org/mactex/) on OS X Yosemite and EL Capitan）
 
