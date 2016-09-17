@@ -64,6 +64,10 @@ windows和Linxu 皆使用 TeXLive 2016 安装
 所以不得不安装 [skim](https://sourceforge.net/projects/skim-app/) pdf 阅读器，
 若不信任此应用，请参照之后方法自行解决。
 安装完成后，在 Sync(同步) 设置处打开 Check for file Changes。
+同时修改家目录的 `latexmkrc` 文件。（如果您使用的是 OS X 默认 sed 请执行）
+
+    $ sed -i '' -e '$ d' ~/.latexmkrc
+    $ echo "\$pdf_previewer = 'open -a /Applications/Skim.app %O %S';" >> ~/.latexmkrc
 
 现在修改论文源码前，可以在 main.tex 的路径下输入命令
 
