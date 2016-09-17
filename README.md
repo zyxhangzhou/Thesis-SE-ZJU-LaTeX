@@ -15,55 +15,55 @@
 
 ## 2、编译方法
 
-- [字体包下载-百度盘](http://pan.baidu.com/s/1hrXDO5A)
+- [字体包下载-百度盘](https://pan.baidu.com/s/1kVuF0Fl)
 - [字体包下载-Google Drive](https://drive.google.com/file/d/0ByPSg5LzlAjAcm1oeWx1OGRWeEU/view)
 
-__OS X__ （[MacTeX 2015](https://tug.org/mactex/) on OS X Yosemite and EL Capitan）
+### 2.1、 __OS X__ （[MacTeX 2016](https://tug.org/mactex/) on OS X Yosemite and EL Capitan）
 
 拷贝 .latexmkrc 到家目录
 
     $ cp latexmkrc_mac ~/.latexmkrc
 
 使用latexmk 命令进行编译。
-如果您遇到编译错误，请检查是否正确安装以上字体包。
+如果您遇到编译错误，请检查是否正确安装mactex和以上字体包。
 
 	$ latexmk main
 
 
-__windows__ （仅在[TexLive2015](http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive2015.iso) on windows10 测试）:
+### 2.2、 __windows__ （仅在[TexLive2016](http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/texlive2016.iso) on windows10 测试）:
 
-首先在环境变量里设置```$HOME```，一般是```C:\Users\username```
+首先在环境变量里设置```$HOME```，一般是```C:\Users\<username>```
 
-添加或修改 .latexmkrc，请做好备份。
+添加或修改 .latexmkrc前，请做好备份。
 
-    $ copy latexmkrc_win %HOME%\.latexmkrc
+    \> copy latexmkrc_win %HOME%\.latexmkrc
 
 一样使用 latexmk 命令进行编译。
-如果您遇到编译错误，请检查是否正确安装以上字体包。
+如果您遇到编译错误，请检查是否正确安装texlive和以上字体包。
 
-__Linux__ (TeXLive2015):
+### 2.3、__Linux__ (TeXLive2016):
 
 首先添加或修改 .latexmkrc，请做好备份。
 
     $ cp latexmkrc_linux ~/.latexmkrc
 
 然后使用 latexmk 命令进行编译。
-如果您遇到编译错误，请检查是否正确安装以上字体包。
+如果您遇到编译错误，请检查是否正确安装texlive以上字体包。
 
-windows和Linxu 皆使用 TeXLive 2015 安装
-[TeXLive 2015 中文文档](https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf)
+windows和Linxu 皆使用 TeXLive 2016 安装
+[TeXLive 2016 中文文档](https://www.tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf)
 
-### 开启实时编译(OS X)
+### 2.4、 开启实时编译(OS X)
 
 论文编译时间通常在20秒以上，
 为减少论文修改时的查错成本，
-所以强烈建议设置**实时编译**。
+强烈建议设置**实时编译**。
 方案如下：
 
 由于 OS X 默认的 Preview 不支持自动刷新，
 所以不得不安装 [skim](https://sourceforge.net/projects/skim-app/) pdf 阅读器，
 若不信任此应用，请参照之后方法自行解决。
-安装完成后，在 Sync 设置处打开 Check for file Changes。
+安装完成后，在 Sync(同步) 设置处打开 Check for file Changes。
 
 现在修改论文源码前，可以在 main.tex 的路径下输入命令
 
@@ -81,7 +81,7 @@ windows和Linxu 皆使用 TeXLive 2015 安装
 
 有洁癖的极端处女座，可以输入以下内容保证每次实时编译都清理临时文件：
 
-    $ echo "$clean_ext = 'synctex.gz synctex.gz(busy) acn acr alg aux bbl bcf blg brf dvi fdb_latexmk glg glo gls idx ilg ind ist lof log lot lox out paux pdfsync run.xml toc';">>~/.latexmkrc
+    $ echo "\$clean_ext = 'synctex.gz synctex.gz(busy) acn acr alg aux bbl bcf blg brf dvi fdb_latexmk glg glo gls idx ilg ind ist lof log lot lox out paux pdfsync run.xml toc';">>~/.latexmkrc
 
 
 ## 3、相关资源文件说明
@@ -114,7 +114,7 @@ windows和Linxu 皆使用 TeXLive 2015 安装
 
 ## 4、注意事项
 
-建议使用TeXLive 2015发行版，并采用XeLaTeX进行编译。
+建议使用TeXLive 2016发行版，并采用XeLaTeX进行编译。
 论文模板属于学习交流性质，
 暂无任何官方机构为本模板合法性背书。
 另请**妥善维护**自己的论文资料，
@@ -128,4 +128,5 @@ windows和Linxu 皆使用 TeXLive 2015 安装
 ## 5、许可权和贡献
 
 **MIT** 
+
 欢迎 issue 和 PR
