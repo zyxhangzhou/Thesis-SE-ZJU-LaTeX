@@ -18,7 +18,7 @@
 - [字体包下载-百度盘](https://pan.baidu.com/s/1kVuF0Fl)
 - [字体包下载-Google Drive](https://drive.google.com/file/d/0ByPSg5LzlAjAcm1oeWx1OGRWeEU/view)
 
-### 2.1、 __OS X__ （[MacTeX 2016](https://tug.org/mactex/) on OS X Yosemite and EL Capitan）
+### 2.1、 __OS X__ （[MacTeX2016](https://tug.org/mactex/) 不低于 OS X Yosemite 通过）
 
 拷贝 .latexmkrc 到家目录
 
