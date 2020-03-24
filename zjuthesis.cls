@@ -796,8 +796,10 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 	\@makechapterhead{#2}
 	\@afterheading}		% 不知道这个\@afterheading有什么用，先放着。
 \def\@makechapterhead#1{%
-	\vspace*{20\p@}%
-	{\parindent \z@ \centering
+	% \vspace*{24\p@} %章节距下划线的距离
+	{
+	\vskip 24\p@ % 段前 24pt
+	\parindent \z@ \centering
 	\fangsong\zihao{-3} \bfseries
 	\ifnum \c@secnumdepth >\m@ne
 		\if@mainmatter
@@ -806,7 +808,9 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 	\fi
 	\interlinepenalty\@M
 	 #1\par\nobreak
-	\vskip 24\p@}}
+	\vskip 18\p@ % 段后 18pt
+	}
+	}
 \def\@schapter#1{%
 	\@makeschapterhead{#1}
 	\@afterheading}
