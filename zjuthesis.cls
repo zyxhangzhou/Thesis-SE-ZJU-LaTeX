@@ -1037,7 +1037,7 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 \AtBeginDocument{%
 	\let\oldref\ref%
 	\renewcommand*{\ref}[1]{\thinspace\oldref{#1}}%
-	\renewcommand*{\eqref}[1]{(\oldref{#1})}
+	\renewcommand*{\eqref}[1]{式(\oldref{#1})}
 }
 
 % ---------- 浮动体相关定义 ----------
