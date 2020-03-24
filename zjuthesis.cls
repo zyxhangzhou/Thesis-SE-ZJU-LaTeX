@@ -349,7 +349,12 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 
 % 设置中文正文字体为仿宋，加粗为黑体，斜体为楷体
 % 除非您使用windows操作系统编译论文，否则强烈不推荐使用微软系的字体
-\setCJKmainfont[BoldFont={Adobe Heiti Std}, ItalicFont={Adobe Kaiti Std}]{Adobe Fangsong Std}
+% \setCJKmainfont[BoldFont={Adobe Heiti Std}, ItalicFont={Adobe Kaiti Std}]{Adobe Fangsong Std}
+
+% 设置 CJK 主字体，也就是设置 \rmfamily 的 CJK 字体
+\setCJKmainfont[AutoFakeBold]{FangSong_GB2312}
+\renewcommand{\fangsong}{\rmfamily} % 这样就可以使用粗体辽
+
 %\setCJKfallbackfamilyfont{\CJKrmdefault}[BoldFont={Adobe Heiti Std}, ItalicFont={Adobe Kaiti Std}]{Adobe Fangsong Std}
 % 由于汉字都是等宽的，等宽字体通常应用在代码段或verbatim环境中，故这里选用黑体后更改。
 %\setCJKmonofont{Noto Sans CJK SC} % 十分优雅美观的思源黑体
