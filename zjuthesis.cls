@@ -321,9 +321,11 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 
 %---------- 本机字体设置 ----------
 \RequirePackage{fontspec}
-\setmainfont{TeX Gyre Termes}	%相当于MS Word中的Times New Roman。
-\setsansfont{TeX Gyre Heros}	%相当于MS Word中的Helvetica。
-\setmonofont{TeX Gyre Cursor}	%相当于MS Word中的Curier。
+%% 不知道剩下俩个用在哪里，先注释掉
+\setmainfont{Times New Roman}
+%\setmainfont{TeX Gyre Termes}	%相当于MS Word中的Times New Roman。
+%\setsansfont{TeX Gyre Heros}	%相当于MS Word中的Helvetica。
+%\setmonofont{TeX Gyre Cursor}	%相当于MS Word中的Curier。
 \RequirePackage{xeCJK}
 
 % xeCJK 环境初始化
