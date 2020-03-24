@@ -309,7 +309,9 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 \fi
 % 重新定义\chaptermark，使其为\leftmark引用。
 \renewcommand\chaptermark[1]{%
-\markboth{\MakeUppercase{%
+\markboth{
+% \MakeUppercase %页眉英文全部大写
+{%
 \ifnum \c@secnumdepth >\m@ne
 	\if@mainmatter
 		\@chapapp  \hskip1em%
