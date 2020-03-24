@@ -665,7 +665,14 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 		Thesis Reviewer 3: & \ZJUunderline[240pt]{\ZJU@enreviewerC}\\[2mm]
 	    Thesis Reviewer 4: & \ZJUunderline[240pt]{\ZJU@enreviewerD}\\[2mm]
 		Thesis Reviewer 5: & \ZJUunderline[240pt]{\ZJU@enreviewerE}\\[10mm]
-		Examining Committe Chair: & \ZJUunderline[240pt]{\ZJU@enchairperson}\\[2mm]
+% 		Examining Committe Chair: & \ZJUunderline[240pt]{\ZJU@enchairperson}\\[2mm]
+		\multicolumn{2}{>{\zihao{4}}l}{{\qquad \quad}Chair:} \uline{\hfill} \\[-10pt]
+		\multicolumn{2}{l} {
+			\hspace*{-0.8cm}
+			\begin{tabular}{>{\zihao{4}}l>{\zihao{4}}l}
+			\multicolumn{2}{l}{(Committee of oral defence)}
+		\end{tabular} 
+		}\\ [-2mm]
 	    Committeeman 1: & \ZJUunderline[240pt]{\ZJU@encommissionerA}\\[2mm]
 	    Committeeman 2: & \ZJUunderline[240pt]{\ZJU@encommissionerB}\\[2mm]
 	    Committeeman 3: & \ZJUunderline[240pt]{\ZJU@encommissionerC}\\[2mm]
