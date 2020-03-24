@@ -910,9 +910,9 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 	\fi}
 
 %---------- 三种目录 ----------
-\renewcommand{\contentsname}{目\texorpdfstring{\ZJUspace}{}录}				% 重命名章节目录名。
-\renewcommand{\listfigurename}{图\texorpdfstring{\ZJUspace}{}目\texorpdfstring{\ZJUspace}{}录}			% 重命名插图目录名。
-\renewcommand{\listtablename}{表\texorpdfstring{\ZJUspace}{}目\texorpdfstring{\ZJUspace}{}录}				% 重命名表目录名。
+\renewcommand{\contentsname}{目录}				% 重命名章节目录名。
+\renewcommand{\listfigurename}{图目录}			% 重命名插图目录名。
+\renewcommand{\listtablename}{表目录}				% 重命名表目录名。
 
 % 下一条命令作用：在toc目录文件中插入‘\let\CTEX@spaceChar\relax’字符，用以删除目
 % 录中的空格字符，其空格字符由\CTEX@spaceChar定义。
@@ -1094,7 +1094,7 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 % ---------- 中英文摘要及关键词 ----------
 % 中文摘要环境
 \newenvironment{cabstract}{%
-	\chapter{摘\texorpdfstring{\ZJUspace}{}要}}{}
+	\chapter{摘要}}{}
 \newenvironment{eabstract}{%
 	\chapter{Abstract}}{}
 
