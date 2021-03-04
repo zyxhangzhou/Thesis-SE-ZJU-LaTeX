@@ -430,7 +430,8 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 			\end{minipage}}\\*
 		\end{tabular}
 
-		\vskip 9mm
+		%调节英文题目下端与申请人姓名之间的间距
+		\vskip 15mm
 		\begin{tabular}{>{\zihao{4}\songti}l>{\zihao{4}\fangsong}l}
 			%申请人姓名: & \ZJUunderline[200pt]{\ZJU@author} \\[3mm]
 			% 由于本模板无法整齐排印生僻字（原因不明）
@@ -615,7 +616,8 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 	\begin{center}
 		% 新建一个长度寄存器，存放英文题名页标题宽度值
 		\newlength{\etitle@width}
-		\addtolength{\etitle@width}{300pt}
+		% 调节英文题名页英文题目宽度
+		\addtolength{\etitle@width}{350pt}
 		\begin{minipage}[b][50pt][b]{\etitle@width}
 			\centering
 			\fontsize{16}{23}\bfseries
