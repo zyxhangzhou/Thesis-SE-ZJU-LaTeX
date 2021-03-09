@@ -81,6 +81,8 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 \pgfplotsset{compat=newest}
 \RequirePackage{tikz}
 \usetikzlibrary{chains,scopes,decorations.markings,intersections,patterns,shapes.geometric,shapes.symbols,through,positioning,calc,calendar,arrows,fit,backgrounds,matrix,pgfplots.groupplots,pgfplots.units,spy,pgfplots.colormaps}
+%目录单倍行距设置
+\RequirePackage{setspace}
 
 % 树状图
 \usetikzlibrary{trees}

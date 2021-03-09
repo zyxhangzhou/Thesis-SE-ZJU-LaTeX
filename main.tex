@@ -73,9 +73,13 @@
 
 % 目录和术语表
 \frontmatter
-\tableofcontents % 正文目录
-\listoffigures   % 图目录
-\listoftables    % 表目录
+%目录单倍行距设置
+\begin{spacing}{1}
+       \tableofcontents % 正文目录
+       \listoffigures   % 图目录
+       \listoftables    % 表目录
+\end{spacing}
+
 % 术语及缩略词表(需要则开)
 %\include{contents/denotation}
 
