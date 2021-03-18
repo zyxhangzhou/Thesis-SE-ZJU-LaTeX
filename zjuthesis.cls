@@ -432,7 +432,7 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 			\end{minipage}}\\*
 		\end{tabular}
 
-		%调节英文题目下端与申请人姓名之间的间距
+        %调节英文题目下端与申请人姓名之间的间距
 		\vskip 15mm
 		\begin{tabular}{>{\zihao{4}\songti}l>{\zihao{4}\fangsong}l}
 			%申请人姓名: & \ZJUunderline[200pt]{\ZJU@author} \\[3mm]
@@ -990,10 +990,16 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{6em}{3.8em}}
 
 %% 图目录
+% 图目录序号前增加"图"字
+\newcommand{\listlabel}{}
+\renewcommand{\numberline}[1]{\listlabel~#1\hspace*{1em}}
 \renewcommand\listoffigures{%
 	\if@openright\cleardoublepage\else\clearpage\fi%
 	\chapter{\listfigurename}
-	\@starttoc{lof}}
+	% 图目录序号前增加"图"字
+	\renewcommand{\listlabel}{图}
+	\@starttoc{lof}
+}
 
 \renewcommand*\l@figure{\@dottedtocline{1}{0\p@}{2.3em}}
 
@@ -1001,6 +1007,8 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 \renewcommand\listoftables{%
 	\if@openright\cleardoublepage\else\clearpage\fi%
 	\chapter{\listtablename}
+	% 表目录序号前增加"表"字
+	\renewcommand{\listlabel}{表}
 	\@starttoc{lot}}
 
 \let\l@table\l@figure
