@@ -375,6 +375,10 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 	\makeOSpage
 }
 % 封面
+% @zzt：	使用伪粗体对封面“中文论文题目”加粗
+% 需要在\documentclass[]里加上AutoFakeBold
+\setCJKfamilyfont{zhsong}[AutoFakeBold = {2.17}]{SimSun}
+\renewcommand*{\songti}{\CJKfamily{zhsong}}
 \newcommand\ZJUmakecover{
 	\cleardoublepage
 	\pdfbookmark[0]{封面}{anchor_cover}
@@ -400,7 +404,8 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 	\newlength{\titleulwidth@cover}
 	\addtolength{\titleulwidth@cover}{260pt}
 	\begin{center}
-		\begin{tabular}[t]{>{\zihao{3}\songti\mdseries}rl}
+			% @zzt：使用伪粗体对封面“中文论文题目”加粗
+			\begin{tabular}[t]{>{\zihao{3}\songti\bfseries}rl}
 			中文论文题目: &
 			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
 				\zihao{-2} \fangsong\bfseries

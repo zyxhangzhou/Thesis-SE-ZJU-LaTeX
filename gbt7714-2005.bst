@@ -103,9 +103,15 @@ FUNCTION {cap.edition.en} 		{"~ed"}
 FUNCTION {cap.edition.zh} 		{"版"}
 FUNCTION {cap.anonymous.en} 	{"Anon"}
 FUNCTION {cap.anonymous.zh} 	{"佚名"}
-FUNCTION {cap.no.address.en} 	{""}
+%%%%%%%%%%%%%%%% @zzt：去掉“s.l.”有问题，我直接搜cap.no.address的代码，把条件分支注释掉了
+FUNCTION {cap.no.address.en} 	{"[S.l.]"}
+%FUNCTION {cap.no.address.en} 	{""}
+%%%%%%%%%%%%%%%%
 FUNCTION {cap.no.address.zh} 	{"[出版地不详]"}
-FUNCTION {cap.no.publisher.en} 	{""}
+%%%%%%%%%%%%%%%% @zzt：去掉“s.n.”有问题，我直接搜cap.no.publisher的代码，把条件分支注释掉了
+FUNCTION {cap.no.publisher.en} 	{"[s.n.]"}
+%FUNCTION {cap.no.publisher.en} 	{""}
+%%%%%%%%%%%%%%%%
 FUNCTION {cap.no.publisher.zh} 	{"[出版者不详]"}
 FUNCTION {cap.et.al.en} 		{", et~al"}
 FUNCTION {cap.et.al.zh} 		{", 等"}
@@ -623,7 +629,7 @@ FUNCTION {format.names} {                         % String Entry::format_names(S
     remove.dots 'jrname :=                        %     jrname = remove_dots(tmp);
     namelist nameindex "{f}" format.name$         %     tmp = format_name(namelist, nameindex, "{f}");
     remove.dots                                   %     tmp = remove_dots(tmp);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% @zzt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% @zzt 更改参考文献格式为首字母大写
      'firstname :=                %     firstname = change_case(tmp, "u");
     namelist nameindex "{ll}" format.name$        %     tmp = format_name(namelist, nameindex, "{ll}");
      'lastname :=                 %     lastname = change_case(tmp, "u");
@@ -1062,9 +1068,11 @@ FUNCTION {output.address} {                       % void Entry::output_address(i
     address format.address write$                 %     write(format_address(this.address));
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
-      "Require address: " cite$ * warning$        %       warning("Require address: " + this.cite);
-      cap.period write$                           %       write(cap_period);
-      cap.no.address format.address write$        %       write(format_address(cap_no_address()));
+    %%%%%%%% @zzt: 没地址信息直接不显示，而非用s.l.替代
+    %  "Require address: " cite$ * warning$        %       warning("Require address: " + this.cite);
+    %  cap.period write$                           %       write(cap_period);
+    %  cap.no.address format.address write$        %       write(format_address(cap_no_address()));
+    %%%%%%%% 
     } 'skip$ if$                                  %     }
   } if$                                           %   }
 }                                                 % }
@@ -1078,9 +1086,11 @@ FUNCTION {output.publisher} {                     % void Entry::output_publisher
     publisher format.publisher write$             %     write(format_publisher(this.publisher));
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
-      "Require publisher: " cite$ * warning$      %       warning("Require publisher: " + this.cite);
-      cap.colon write$                            %       write(cap_colon);
-      cap.no.publisher format.publisher write$    %       write(format_publisher(cap_no_publisher()));
+    %%%%%%%% @zzt: 没出版社信息直接不显示，而非用s.n.替代
+    %  "Require publisher: " cite$ * warning$      %       warning("Require publisher: " + this.cite);
+    %  cap.colon write$                            %       write(cap_colon);
+    %  cap.no.publisher format.publisher write$    %       write(format_publisher(cap_no_publisher()));
+    %%%%%%%%
     } 'skip$ if$                                  %     }
   } if$                                           %   }
 }                                                 % }
