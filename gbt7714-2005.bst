@@ -103,15 +103,9 @@ FUNCTION {cap.edition.en} 		{"~ed"}
 FUNCTION {cap.edition.zh} 		{"版"}
 FUNCTION {cap.anonymous.en} 	{"Anon"}
 FUNCTION {cap.anonymous.zh} 	{"佚名"}
-%%%%%%%%%%%%%%%% @zzt：去掉“s.l.”有问题，我直接搜cap.no.address的代码，把条件分支注释掉了
-FUNCTION {cap.no.address.en} 	{"[S.l.]"}
-%FUNCTION {cap.no.address.en} 	{""}
-%%%%%%%%%%%%%%%%
+FUNCTION {cap.no.address.en} 	{"S.l."}
 FUNCTION {cap.no.address.zh} 	{"[出版地不详]"}
-%%%%%%%%%%%%%%%% @zzt：去掉“s.n.”有问题，我直接搜cap.no.publisher的代码，把条件分支注释掉了
 FUNCTION {cap.no.publisher.en} 	{"[s.n.]"}
-%FUNCTION {cap.no.publisher.en} 	{""}
-%%%%%%%%%%%%%%%%
 FUNCTION {cap.no.publisher.zh} 	{"[出版者不详]"}
 FUNCTION {cap.et.al.en} 		{", et~al"}
 FUNCTION {cap.et.al.zh} 		{", 等"}
@@ -128,6 +122,9 @@ FUNCTION {cap.period} 		{"\@. "}
 FUNCTION {cap.comma} 			{"\@, "}
 FUNCTION {cap.colon} 			{"\thinspace{}\textnormal{: }"}
 FUNCTION {cap.double.slash} 	{" //\thinspace{}"}
+%%%% @zzt
+FUNCTION {cap.printC} 	{"[C]"}
+%%%%
 FUNCTION {cap.dash} 			{"\thinspace{}\textnormal{--}\thinspace{}"}
 
 % Predefined latex command used to format the style of bibitems
@@ -1066,11 +1063,14 @@ FUNCTION {output.address} {                       % void Entry::output_address(i
   address empty$ not {                            %   if (! empty(this.address)) {
     cap.period write$                             %     write(cap_period);
     address format.address write$                 %     write(format_address(this.address));
+    %%%% @zzt
+    cap.colon write$                              %     write(cap_colon);
+    %%%%
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
     %%%%%%%% @zzt: 没地址信息直接不显示，而非用s.l.替代
-    %  "Require address: " cite$ * warning$        %       warning("Require address: " + this.cite);
-    %  cap.period write$                           %       write(cap_period);
+      "Require address: " cite$ * warning$        %       warning("Require address: " + this.cite);
+      cap.period write$                           %       write(cap_period);
     %  cap.no.address format.address write$        %       write(format_address(cap_no_address()));
     %%%%%%%% 
     } 'skip$ if$                                  %     }
@@ -1082,15 +1082,15 @@ FUNCTION {output.address} {                       % void Entry::output_address(i
 FUNCTION {output.publisher} {                     % void Entry::output_publisher(int required) {
   'required :=                                    %   this.required = required;
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
-    cap.colon write$                              %     write(cap_colon);
+    %%%% @zzt
+    %cap.colon write$                              %     write(cap_colon);
+    %%%%
     publisher format.publisher write$             %     write(format_publisher(this.publisher));
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
-    %%%%%%%% @zzt: 没出版社信息直接不显示，而非用s.n.替代
-    %  "Require publisher: " cite$ * warning$      %       warning("Require publisher: " + this.cite);
-    %  cap.colon write$                            %       write(cap_colon);
-    %  cap.no.publisher format.publisher write$    %       write(format_publisher(cap_no_publisher()));
-    %%%%%%%%
+      "Require publisher: " cite$ * warning$      %       warning("Require publisher: " + this.cite);
+      cap.colon write$                            %       write(cap_colon);
+      cap.no.publisher format.publisher write$    %       write(format_publisher(cap_no_publisher()));
     } 'skip$ if$                                  %     }
   } if$                                           %   }
 }                                                 % }
@@ -1488,8 +1488,14 @@ FUNCTION {thesis.impl} {                          % void Entry::thesis_impl() {
   true output.title                               %   output_title(true);
   true output.mark                                %   output_mark(true);
   false output.translator                         %   output_translator(false);
-  true output.address                             %   output_address(true);
-  true output.school                              %   output_school(true);
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%% @zzt：修改学位论文格式
+  %true output.address                             %   output_address(true); 
+  cap.period write$                             
+  address format.address write$
+  cap.comma write$
+  school format.school write$
+  %true output.school                              %   output_school(true);
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
   cap.comma write$                                %   write(cap_comma);
   true output.year                                %   output_year(true);
   false output.pages                              %   output_pages(false);
@@ -1794,9 +1800,44 @@ FUNCTION {incollection} {                         % void Entry::incollection() {
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
+%FUNCTION {inproceedings} {                        % void Entry::inproceedings() {
+%  "C" set.mark                                    %   set_mark("C");
+%  inbook.impl                                     %   inbook_impl();
+%}                                                 % }
+                                                  %
+%%%%%%%%%%%%%%%% @zzt
 FUNCTION {inproceedings} {                        % void Entry::inproceedings() {
-  "C" set.mark                                    %   set_mark("C");
-  inbook.impl                                     %   inbook_impl();
+  "A" set.mark                                    %   set_mark("C");
+  % inbook.impl                                     %   inbook_impl();
+
+  start.bibitem                                   %   start_bibitem();
+    true output.author                              %   output_author(true);
+    true output.title                               %   output_title(true);
+    true output.mark                                %   output_mark(true);
+    false output.translator                         %   output_translator(false);
+    %cap.double.slash write$                         %   write(cap_double_slash);  
+    
+    cap.period write$
+    
+    false output.editor                             %   output_editor(false);
+    true output.series.volume.booktitle             %   output_series_volume_booktitle(true);
+    
+    cap.printC write$
+    
+    false output.edition                            %   output_edition(false);
+    publisher empty$ not {                          %   if (! empty(this.publisher)) {
+      true output.address                           %     output_address(true);
+      true output.publisher                         %     output_publisher(true);
+      cap.comma write$                              %     write(cap_comma);
+    } {                                             %   } else {
+      cap.period write$                             %     write(cap_period);
+    } if$                                           %   }
+    true output.year                                %   output_year(true);
+    false output.pages                              %   output_pages(false);
+    false output.citedate                           %   output_citedate(false);
+    false output.url.or.doi                         %   output_url_or_doi(false);
+  end.bibitem                                     %   end_bibitem();
+  %
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
