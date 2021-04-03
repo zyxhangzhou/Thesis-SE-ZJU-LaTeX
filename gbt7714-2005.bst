@@ -123,7 +123,8 @@ FUNCTION {cap.comma} 			{"\@, "}
 FUNCTION {cap.colon} 			{"\thinspace{}\textnormal{: }"}
 FUNCTION {cap.double.slash} 	{" //\thinspace{}"}
 %%%% @zzt
-FUNCTION {cap.printC} 	{"[C]"}
+FUNCTION {cap.slash}      {"/"}
+FUNCTION {cap.printC}   	{"[C]"}
 %%%%
 FUNCTION {cap.dash} 			{"\thinspace{}\textnormal{--}\thinspace{}"}
 
@@ -839,14 +840,18 @@ FUNCTION {format.pages} {                         % String Emtry::format_pages(S
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {format.modifydate} {                    % String Emtry::format_modifydate(String modifydate) {
-  add.bracket                                     %   modifydate = add_bracket(modifydate);
+%%%% @zzt
+%  add.bracket                                     %   modifydate = add_bracket(modifydate);
+%%%%
   "modifydate" format.bibinfo                     %   return format_bibinfo(modifydate, "modifydate");
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {format.citedate} {                      % String Emtry::format_citedate(String citedate) {
-  add.squarebracket                               %   citedate = add_squarebracket(citedate);
+%%%% @zzt
+%  add.squarebracket                               %   citedate = add_squarebracket(citedate);
+%%%%
   "citedate" format.bibinfo                       %   return format_bibinfo(citedate, "citedate");
 }                                                 % }
                                                   %
@@ -856,7 +861,10 @@ FUNCTION {format.citedate} {                      % String Emtry::format_citedat
                                                   % // since if the URL contains special symbols such
                                                   % // as '%', the \biburl{} will be broken.
 FUNCTION {format.url} {                           % String Emtry::format_url(String url) {
-  "\newline\url{" swap$ * "}" *                   %   return "\newline\url{" + url + "}";
+%%%% @zzt: 去掉url自动换行
+%  "\newline\url{" swap$ * "}" *                   %   return "\newline\url{" + url + "}";
+  "\url{" swap$ * "}" *                   %   return "\newline\url{" + url + "}";
+%%%%
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -880,23 +888,44 @@ FUNCTION {get.full.title} {                       % String Entry::get_full_title
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
+%%%% @zzt
+
+%FUNCTION {get.full.booktitle} {                   % String Entry::get_full_booktitle() {
+%  series empty$ {                                 %     if (empty(this.series)) {
+%    volume empty$ {                               %       if (empty(this.volume)) {
+%      booktitle                                   %         return this.booktitle;
+%    } {                                           %       } else {  
+%      booktitle cap.colon * cap.volume * volume * %         return this.booktitle + cap_colon + cap_volume() + this.volume;  
+%    } if$                                         %       }
+%  } {                                             %     } else {
+%    volume empty$ {                               %       if (empty(this.volume)) {
+%      series cap.colon * booktitle *              %         return this.series + cap_colon + this.booktitle;
+%    } {                                           %       } else {
+%      series cap.comma * cap.volume * volume *    %         String str = this.series + cap_comma + cal_volume() + this.volume;
+%      cap.colon * booktitle *                     %         return str + cap_colon + this.booktitle;
+%    } if$                                         %       }
+%  } if$                                           %     }
+%}                                                 % }
+                                                  %
 FUNCTION {get.full.booktitle} {                   % String Entry::get_full_booktitle() {
   series empty$ {                                 %     if (empty(this.series)) {
     volume empty$ {                               %       if (empty(this.volume)) {
-      booktitle                                   %         return this.booktitle;
-    } {                                           %       } else {
-      booktitle cap.colon * cap.volume * volume * %         return this.booktitle + cap_colon + cap_volume() + this.volume;
+      booktitle cap.printC *                                  %         return this.booktitle;
+    } {                                           %       } else {  
+      booktitle cap.printC * cap.colon * cap.volume * volume * %         return this.booktitle + cap_colon + cap_volume() + this.volume;  
     } if$                                         %       }
   } {                                             %     } else {
     volume empty$ {                               %       if (empty(this.volume)) {
-      series cap.colon * booktitle *              %         return this.series + cap_colon + this.booktitle;
+      series cap.printC * cap.colon * booktitle *              %         return this.series + cap_colon + this.booktitle;
     } {                                           %       } else {
-      series cap.comma * cap.volume * volume *    %         String str = this.series + cap_comma + cal_volume() + this.volume;
+      series cap.printC * cap.comma * cap.volume * volume *    %         String str = this.series + cap_comma + cal_volume() + this.volume;
       cap.colon * booktitle *                     %         return str + cap_colon + this.booktitle;
     } if$                                         %       }
   } if$                                           %     }
 }                                                 % }
                                                   %
+%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {get.pages} {                            % String Entry::get_pages() {
@@ -1175,7 +1204,10 @@ FUNCTION {output.pages} {                         % void Entry::output_pages(int
 FUNCTION {output.modifydate} {                    % void Entry::output_modifydate(int required) {
   'required :=                                    %   this.required = required;
   modifydate empty$ not {                         %   if (! empty(this.modifydate)) {
-    cap.space write$                              %     write(cap_space);
+%%%% @zzt
+%    cap.space write$                              %     write(cap_space);
+    cap.comma write$
+%%%%
     modifydate format.modifydate write$           %     write(format_modifydate(this.modifydate));
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
@@ -1189,7 +1221,10 @@ FUNCTION {output.modifydate} {                    % void Entry::output_modifydat
 FUNCTION {output.citedate} {                      % void Entry::output_citedate(int required) {
   'required :=                                    %   this.required = required;
   citedate empty$ not {                           %   if (! empty(this.citedate)) {
-    cap.space write$                              %     write(cap_space);
+%%%% @zzt
+%    cap.space write$                              %     write(cap_space);
+    cap.slash write$
+%%%%
     citedate format.citedate write$               %     write(format_citedate(this.citedate));
   } {                                             %   } else {
     required is.online or {                       %     if ((required == 1) || (is_online())) {
@@ -1688,12 +1723,21 @@ FUNCTION {online} {                               % void Entry::online() {
       cap.comma write$                            %       write(cap_comma);
     } if$                                         %     }
   } {                                             %   } else {
-    cap.period write$                             %     write(cap_period);
+%%%% @zzt
+    %cap.period write$                             %     write(cap_period);
   } if$                                           %   }
-  true output.year                                %   output_year(true);
-  false output.modifydate                         %   output_modifydate(false);
-  true output.citedate                            %   output_citedate(true);
+
+%  true output.year                                %   output_year(true);
+%  false output.modifydate                         %   output_modifydate(false);
+%  true output.citedate                            %   output_citedate(true);
+%  true output.url                                 %   output_url(true);
   true output.url                                 %   output_url(true);
+%%%% @zsyh
+  cap.comma write$
+  true output.year                                %   output_year(true);
+  %true output.modifydate                         %   output_modifydate(false);
+  %true output.citedate                            %   output_citedate(true);
+%%%%
   end.bibitem                                     %   end_bibitem();
 }                                                 % }
                                                   %
@@ -1822,7 +1866,7 @@ FUNCTION {inproceedings} {                        % void Entry::inproceedings() 
     false output.editor                             %   output_editor(false);
     true output.series.volume.booktitle             %   output_series_volume_booktitle(true);
     
-    cap.printC write$
+    %cap.printC write$
     
     false output.edition                            %   output_edition(false);
     publisher empty$ not {                          %   if (! empty(this.publisher)) {
