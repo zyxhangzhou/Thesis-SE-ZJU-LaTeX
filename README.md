@@ -2,6 +2,8 @@
 模板上游：[ZJU-Awesome](https://github.com/ZJU-Awesome/write_with_LaTeX)<br>
 模板改造者：  zsyh等
 
+注：本人毕业后不再维护本模板，不对使用本模板产生的任何后果负责。
+
 ## 1、简介
 
 为了方便学位论文的排版，让作者专心于内容，
