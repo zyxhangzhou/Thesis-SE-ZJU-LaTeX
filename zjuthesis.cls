@@ -407,7 +407,7 @@ Created: 2014.09.15 by Sky and Hamburger,  Modified by Kwen String at 2016.04.08
 			% @zzt：使用伪粗体对封面“中文论文题目”加粗
 			\begin{tabular}[t]{>{\zihao{3}\songti\bfseries}rl}
 			中文论文题目: &
-			{\begin{minipage}[t][60pt][t]{\titleulwidth@cover}
+			{\begin{minipage}[t][45pt][t]{\titleulwidth@cover}
 				\zihao{-2} \fangsong\bfseries
 				\uline{\ZJU@title\hfill}
 			\end{minipage}} \\%[20pt]
